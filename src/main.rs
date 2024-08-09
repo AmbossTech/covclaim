@@ -5,6 +5,7 @@ use crate::chain::esplora::EsploraClient;
 use crate::chain::types::ChainBackend;
 use dotenvy::dotenv;
 use elements::AddressParams;
+use env_logger::Target;
 use log::{debug, error, info};
 
 mod api;
@@ -24,7 +25,7 @@ async fn main() {
         Ok(_) => {}
         Err(err) => println!("Could not read .env file: {}", err),
     };
-    env_logger::init();
+    env_logger::builder().target(Target::Stdout).init();
 
     info!(
         "Starting {} v{}-{}{}",
